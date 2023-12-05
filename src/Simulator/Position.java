@@ -3,10 +3,15 @@ package Simulator;
 public class Position {
     private double x;
     private int y;
+    final public double initx;
+    final public int inity;
+
     private Field f;
     public Position(double x, int y){
         this.x = x;
         this.y = y;
+        this.initx=x;
+        this.inity=y;
     }
 
 
@@ -28,12 +33,12 @@ public class Position {
 
     public float getXPixel(){
         f = Field.getInstance();
-        return (float) (f.x + f.sideLength * (this.getX()+0.5));
+        return (float) (f.x + f.sideLength * (this.getX()));
     }
 
     public float getYPixel(){
         f = Field.getInstance();
-        return (float) (f.y + f.sideLength * (this.getY()+0.5));
+        return (float) (f.y + f.sideLength * (this.getY()));
     }
 
     public float getXCenter(){

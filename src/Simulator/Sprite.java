@@ -1,25 +1,34 @@
 package Simulator;
+import Constants.Constants;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Sprite {
-    private int r,b,g;
     private Position pos;
-    private int radius;
-    public Sprite(int r, int b, int g, Position pos, int radius){
-        this.r = r;
-        this.b=b;
-        this.g=g;
+    private int sidelength;
+    private PImage img;
+    private String path;
+    public Sprite(Position pos, int sidelength){
         this.pos = pos;
-        this.radius = radius;
+        this.sidelength=sidelength;
+    }
+
+    public void setPath(String path){
+        this.path = path;
     }
 
     public void setSize(int r){
-        this.radius = r;
+        this.sidelength = r;
     }
 
     public void draw(PApplet window) {
-//        Field f = Field.getInstance();
-        window.fill(r,g,b);
-        window.ellipse(pos.getXPixel(), pos.getYPixel(), radius, radius);
+        if(img != null) {
+            window.image(img, pos.getXPixel(), pos.getYPixel(), sidelength, sidelength);
+        } else if(path != null){
+            this.img = window.loadImage(path);
+            window.image(img, pos.getXPixel(), pos.getYPixel(), sidelength, sidelength);
+        } else {
+            window.rect(pos.getXPixel()+ (int)(Constants.FIELD.BOXSIDELENGTH/2), pos.getYPixel()+(int)(Constants.FIELD.BOXSIDELENGTH/2), sidelength, sidelength);
+        }
     }
 }

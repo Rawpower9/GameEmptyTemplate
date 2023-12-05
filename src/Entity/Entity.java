@@ -9,16 +9,15 @@ public class Entity {
     protected int health;
     protected int damage;
     protected boolean alive;
-    protected int radius;
+    protected int sidelength;
     protected Sprite s;
 
-
-    public Entity(int x,int y, int r, int g, int b, int radius){
+    public Entity(int x,int y, int sidelength){
         position = new Position(x,y);
-        this.radius = radius;
-        s = new Sprite(r,g,b, position, this.radius);
+        this.sidelength = sidelength;
+        s = new Sprite(position, this.sidelength);
         this.damage = 1;
-        this.health = 100;
+        this.health = 100; //default
         this.alive = true;
     }
 

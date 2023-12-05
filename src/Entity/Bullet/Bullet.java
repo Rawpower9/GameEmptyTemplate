@@ -10,16 +10,46 @@ public class Bullet {
     protected double velocity;
     protected int damage;
     protected Sprite s;
-    public Bullet(double x, int y, int damage, double v){
+    protected final double range;
+//    public Bullet(double x, int y, int damage, double v){
+//        this.position = new Position(x,y);
+//        this.velocity = v;
+//        this.damage = damage;
+//        s = new Sprite(position, 10);
+//        s.setSize(10);
+//    }
+
+    public Bullet(double x, int y, int damage, double v, double range){
         this.position = new Position(x,y);
         this.velocity = v;
         this.damage = damage;
-        s = new Sprite(102,102,102,position, 10);
+        this.range=range;
+        s = new Sprite(position, 10);
         s.setSize(10);
     }
 
-    public void move(){
-        position.IncreaseX(velocity);
+    public Bullet(double x, int y, int damage, double v, double range,String filepath){
+        this.position = new Position(x,y);
+        this.velocity = v;
+        this.damage = damage;
+        this.range=range;
+        s = new Sprite(position, 10);
+        s.setPath(filepath);
+    }
+
+    public boolean move(){
+        if(range == -1) {
+            position.IncreaseX(velocity);
+        } else {
+            System.out.println(position.initx + " " + range + " " + position.getX());
+            if (range + position.initx < position.getX()){
+                System.out.println("delete me");
+                return true;
+            } else {
+                position.IncreaseX(velocity);
+            }
+        }
+        return false;
     }
 
     public int hasCollided(){
@@ -31,7 +61,7 @@ public class Bullet {
     }
 
     public boolean hasGoneOffScreen(){
-        if(position.getXPixel() > Constants.Field.WIDTH){
+        if(position.getXPixel() > Constants.FIELD.WIDTH){
             return true;
         }
         return false;

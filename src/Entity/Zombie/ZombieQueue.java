@@ -20,15 +20,12 @@ public class ZombieQueue {
 
     public void addToQueue(Zombie z){
         zombies.get(z.getPosition().getY()).add(z);
-        System.out.println(z.getPosition().getY());
     }
 
     public void draw(ArrayList<Zombie> zombies) { //TODO: Rename this
         for (int i = 0; i < timeLeft.length; i++) {
-            System.out.println(timeLeft[i]);
             if (timeLeft[i] <= 0) {
                 if(this.zombies.get(i).isEmpty() == false) {
-//                    System.out.println(timeLeft[i]);
                     zombies.add(this.zombies.get(i).remove(0));
                 }
                 timeLeft[i] = time;
