@@ -36,7 +36,8 @@ public class ZombieQueue {
                 if(this.zombies.get(i).isEmpty() == false) {
                     zombies.add(this.zombies.get(i).remove(0));
                 }
-                timeLeft[i] = time;
+                timeLeft[i] = (int)(Math.random()*this.time/2) + (int)(this.time/2);
+                this.time = Math.max(this.time-5, 0);
             } else {
                 timeLeft[i]--;
             }

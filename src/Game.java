@@ -1,9 +1,13 @@
 import Constants.Constants;
 import Constants.Constants.FIELD;
 import Simulator.Field;
+import Simulator.Save;
 import Simulator.SideBar.Sidebar;
 import processing.core.PApplet;
 import processing.core.PImage;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Game extends PApplet {
     // TODO: declare game variables
@@ -23,6 +27,13 @@ public class Game extends PApplet {
         frameRate(60);
         try {
             f = Field.getInstance(FIELD.NUMROW,FIELD.NUMCOL,FIELD.BOXSIDELENGTH,FIELD.STARTX,FIELD.STARTY, this);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            f.setPlants(Save.loadState());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -69,6 +80,13 @@ public class Game extends PApplet {
     public void keyPressed() {
         if (key == 'p') {
             pause = !pause;
+            if(pause == false){
+                try {
+                    Save.saveState(f.getPlants());
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 

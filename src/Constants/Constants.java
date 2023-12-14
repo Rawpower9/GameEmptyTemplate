@@ -72,7 +72,7 @@ public class Constants {
         }
 
         public static class SUNFLOWER{
-            public static int COOLDOWN=100;
+            public static int COOLDOWN=1000;
         }
     }
 
@@ -91,8 +91,28 @@ public class Constants {
         };
         public static class NORMAL{
             public static int HEALTH = 50;
-            public static double VELOCITY=0.01;
+            public static double VELOCITY=0.007;
             public static int DAMAGE=10;
+        }
+        public static class BUCKET{
+            public static int HEALTH = 75;
+            public static double VELOCITY=0.005;
+            public static int DAMAGE=10;
+        }
+        public static class CONE{
+            public static int HEALTH = 75;
+            public static double VELOCITY=0.005;
+            public static int DAMAGE=20;
+        }
+        public static class DANCE{
+            public static int HEALTH = 25;
+            public static double VELOCITY=0.01;
+            public static int DAMAGE = 5;
+        }
+        public static class FLAG{
+            public static int HEALTH = 200;
+            public static double VELOCITY=0.0001;
+            public static int DAMAGE = 1000;
         }
     }
 

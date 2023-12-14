@@ -54,7 +54,15 @@ public class Field {
 
     private void init() throws ClassNotFoundException {
         for(int i = 0; i < 10; i++){
-            q.addToQueue(ZombieType.getInstance((int)(Math.random() * 5), Constants.ZOMBIE.TYPE.NORMAL));
+            q.addToQueue(ZombieType.getInstance(i % 5, Constants.ZOMBIE.TYPE.NORMAL));
+        }
+
+        for(int i = 0; i < 10; i++){
+            q.addToQueue(ZombieType.getInstance(i % 5, Constants.ZOMBIE.TYPE.BUCKET));
+        }
+
+        for(int i = 0; i < 35; i++){
+            q.addToQueue(ZombieType.getRandom((int)(Math.random() * 5)));
         }
     }
 
@@ -88,8 +96,6 @@ public class Field {
             }
         }
 
-
-//        System.out.println(bullets.size());
 
         for(int i = 0; i < bullets.size(); i++){
             if(bullets.get(i).hasGoneOffScreen()){
@@ -160,8 +166,6 @@ public class Field {
     public int bulletPressed(int mouseX, int mouseY){
         int totalCash = 0;
         for(int i = 0; i < bullets.size(); i++){
-            System.out.println("X:"+mouseX + " " + bullets.get(i).getPosition().getXPixel() + " " + (bullets.get(i).getPosition().getXPixel()+50f));
-            System.out.println("Y:"+mouseY + " " + bullets.get(i).getPosition().getYPixel() + " " + (bullets.get(i).getPosition().getYPixel()+50f));
 
             if(mouseX > bullets.get(i).getPosition().getXPixel()+75f && mouseX < bullets.get(i).getPosition().getXPixel()+175f){
                 if(mouseY > bullets.get(i).getPosition().getYPixel()+75f && mouseY < bullets.get(i).getPosition().getYPixel()+175f){
@@ -176,6 +180,14 @@ public class Field {
             }
         }
         return totalCash;
+    }
+
+    public Plant[][] getPlants(){
+        return plants;
+    }
+
+    public void setPlants(Plant[][] plants){
+        this.plants = plants;
     }
 
     public boolean inRegion(int x, int y, int w, int h, int mouseX, int mouseY){
