@@ -13,7 +13,6 @@ public class Constants {
         public static int STARTX = 300;
         public static int STARTY = 25;
 
-
     }
 
     public static class PLANT{
