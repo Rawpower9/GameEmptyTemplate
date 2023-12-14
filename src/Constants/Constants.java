@@ -18,20 +18,26 @@ public class Constants {
 
     public static class PLANT{
         public static enum TYPE {
-            SUNFLOWER("You need da moneh? I got da money."),
-            WALL("Unstoppable force against zombie"),
-            CHOMPER("Mega-Hungry Zombie Devourer"),
-            PEASHOOTER("Pew Pew? More like Pea Pea"),
-            POTATOMINE("Explosive Vegetable"),
-            REPEATER("Strong Pea"),
-            SNOWPEA("Slow Pea");
+            SUNFLOWER("You need da moneh? I got da money.", 100),
+            WALL("Unstoppable force against zombie",100),
+            CHOMPER("Mega-Hungry Zombie Devourer",150),
+            PEASHOOTER("Pew Pew? More like Pea Pea",50),
+            POTATOMINE("Explosive Vegetable",25),
+            REPEATER("Strong Pea",150),
+            SNOWPEA("Slow Pea",150);
 
             private final String desc;
-            TYPE(String description) {
+            private final int cost;
+
+            TYPE(String description,int cost) {
                 this.desc = description;
+                this.cost=cost;
             }
             public String DESC(){
                 return desc;
+            }
+            public int COST(){
+                return cost;
             }
         };
 
@@ -45,6 +51,7 @@ public class Constants {
             public static int HEALTH = 500;
             public static int DAMAGE = 10;
             public static double RANGE = -1;
+            public static int COOLDOWN = 100;//frames
         }
 
         public static class CHOMPER{
@@ -54,12 +61,39 @@ public class Constants {
         }
 
         public static class SNOWPEA{
-            public static int HEALTH = 500;
+            public static int HEALTH = 200;
+        }
+
+        public static class REPEATER{
+            public static int HEALTH = 150;
+            public static int COOLDOWN = 50;
+
+
+        }
+
+        public static class SUNFLOWER{
+            public static int COOLDOWN=100;
         }
     }
 
     public static class ZOMBIE{
-        enum TYPE {REGULAR};
+        public static enum TYPE {
+            NORMAL(),
+            BUCKET(),
+            CONE(),
+            DANCE(),
+            FLAG();
+
+
+            TYPE() {
+
+            }
+        };
+        public static class NORMAL{
+            public static int HEALTH = 50;
+            public static double VELOCITY=0.01;
+            public static int DAMAGE=10;
+        }
     }
 
     public static class SIDEBAR{

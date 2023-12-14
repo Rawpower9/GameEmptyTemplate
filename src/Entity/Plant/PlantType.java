@@ -16,9 +16,9 @@ public class PlantType {
         } else if (t.equals(Constants.PLANT.TYPE.POTATOMINE)){
             return new Potatomine(w,c,t);
         } else if (t.equals(Constants.PLANT.TYPE.REPEATER)){
-            return new Wall(w,c,t);
+            return new Repeater(w,c,t);
         }  else if (t.equals(Constants.PLANT.TYPE.SUNFLOWER)){
-            return new Wall(w,c,t);
+            return new Sunflower(w,c,t);
         } else{
             throw new ClassNotFoundException("This Plant does not exists");
         }

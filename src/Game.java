@@ -1,3 +1,4 @@
+import Constants.Constants;
 import Constants.Constants.FIELD;
 import Simulator.Field;
 import Simulator.SideBar.Sidebar;
@@ -10,15 +11,26 @@ public class Game extends PApplet {
     Sidebar s;
     private boolean pause;
     private PImage img;
+
+    private int money;
+    boolean lose,win;
+
     public void settings() {
         size(FIELD.WIDTH, FIELD.HEIGHT);   // set the window size
     }
 
     public void setup() {
         frameRate(60);
-        f = Field.getInstance(FIELD.NUMROW,FIELD.NUMCOL,FIELD.BOXSIDELENGTH,FIELD.STARTX,FIELD.STARTY, this);
+        try {
+            f = Field.getInstance(FIELD.NUMROW,FIELD.NUMCOL,FIELD.BOXSIDELENGTH,FIELD.STARTX,FIELD.STARTY, this);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         s = new Sidebar(this);
         pause = false;
+        money = 500;
+        this.lose = false;
+        this.win = false;
         // TODO: initialize game variables
     }
 
@@ -28,10 +40,24 @@ public class Game extends PApplet {
      */
     public void draw() {
 //        f.move();
-        if(!pause) {
+        if(!pause && !lose && !win) {
+            if(f.loseCheck()){
+                lose = true;
+            } else if(f.winCheck()){
+                win = true;
+            }
             background(255);    // paint screen white
             f.draw(this);
             s.draw(this);
+//            rect(FIELD.STARTX+FIELD.BOXSIDELENGTH*FIELD.NUMROW, FIELD.STARTY,100,50);
+            text("Money: " + money, FIELD.STARTX, FIELD.STARTY + FIELD.BOXSIDELENGTH*FIELD.NUMCOL+50);
+
+        } else if (lose){
+            textSize((float) FIELD.HEIGHT /2);
+            text("LOST", 0, Constants.FIELD.HEIGHT);
+        } else if (win){
+            textSize((float) FIELD.HEIGHT /2);
+            text("WIN", 0, Constants.FIELD.HEIGHT);
         }
 
 //        fill(0,255,0);          // load green paint color
@@ -44,19 +70,18 @@ public class Game extends PApplet {
         if (key == 'p') {
             pause = !pause;
         }
-//        if(key == 's'){
-//            s.keyPressed();
-//        }
     }
 
     public void mousePressed(){
         if(mousePressed){
             try {
-                f.mousePressed(mouseX, mouseY,s.getOnMouse());
+                money = f.mousePressed(mouseX, mouseY,s.getOnMouse(),money);
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+
             s.mousePressed(mouseX,mouseY);
+            money += f.bulletPressed(mouseX,mouseY);
         }
     }
 

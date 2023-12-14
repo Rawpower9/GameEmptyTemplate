@@ -1,6 +1,7 @@
 package Entity.Plant;
 
 import Constants.Constants;
+import Entity.Bullet.BasicProjectile;
 import Entity.Bullet.Bullet;
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public class Wall extends Plant{
         this.health = Constants.PLANT.WALL.HEALTH;
     }
 
-    public void shoot(ArrayList<Bullet> bullets){
+    public void shoot(ArrayList<BasicProjectile> bullets){
         //This plant does not shoot
     }
 

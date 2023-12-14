@@ -31,4 +31,15 @@ public class Sprite {
             window.rect(pos.getXPixel()+ (int)(Constants.FIELD.BOXSIDELENGTH/2), pos.getYPixel()+(int)(Constants.FIELD.BOXSIDELENGTH/2), sidelength, sidelength);
         }
     }
+
+    public void bulletDraw(PApplet window){
+        if(img != null) {
+            window.image(img, pos.getXPixel()+Constants.FIELD.BOXSIDELENGTH/2, pos.getYPixel()+Constants.FIELD.BOXSIDELENGTH/2, sidelength, sidelength);
+        } else if(path != null){
+            this.img = window.loadImage(path);
+            window.image(img, pos.getXPixel()+Constants.FIELD.BOXSIDELENGTH/2, pos.getYPixel()+Constants.FIELD.BOXSIDELENGTH/2, sidelength, sidelength);
+        } else {
+            window.rect(pos.getXPixel()+ (int)(Constants.FIELD.BOXSIDELENGTH/2), pos.getYPixel()+(int)(Constants.FIELD.BOXSIDELENGTH/2), sidelength, sidelength);
+        }
+    }
 }

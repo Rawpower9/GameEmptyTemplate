@@ -18,8 +18,16 @@ public class ZombieQueue {
         }
     }
 
+    public int ZombiesInQueue(){
+        int total = 0;
+        for(int i = 0; i< zombies.size(); i++){
+            total += zombies.get(i).size();
+        }
+        return total;
+    }
+
     public void addToQueue(Zombie z){
-        zombies.get(z.getPosition().getY()).add(z);
+        zombies.get((int)(z.getPosition().getY())).add(z);
     }
 
     public void draw(ArrayList<Zombie> zombies) { //TODO: Rename this

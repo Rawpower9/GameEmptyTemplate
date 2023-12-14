@@ -2,12 +2,19 @@ package Simulator;
 
 public class Position {
     private double x;
-    private int y;
+    private double y;
     final public double initx;
-    final public int inity;
+    final public double inity;
 
     private Field f;
     public Position(double x, int y){
+        this.x = x;
+        this.y = y;
+        this.initx=x;
+        this.inity=y;
+    }
+
+    public Position(double x, double y){
         this.x = x;
         this.y = y;
         this.initx=x;
@@ -24,11 +31,19 @@ public class Position {
     }
 
     public int getY() {
+        return (int)(y);
+    }
+
+    public double getDoubleY(){
         return y;
     }
 
-    public void IncreaseY(int y) {
+    public void IncreaseY(double y) {
         this.y += y;
+    }
+
+    public void IncreaseDoubleY(double y){
+        this.y+=y;
     }
 
     public float getXPixel(){
@@ -38,7 +53,7 @@ public class Position {
 
     public float getYPixel(){
         f = Field.getInstance();
-        return (float) (f.y + f.sideLength * (this.getY()));
+        return (float) (f.y + f.sideLength * (this.getDoubleY()));
     }
 
     public float getXCenter(){

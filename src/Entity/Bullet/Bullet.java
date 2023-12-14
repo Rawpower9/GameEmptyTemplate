@@ -5,7 +5,7 @@ import Entity.Entity;
 import Simulator.Position;
 import Simulator.Sprite;
 
-public class Bullet {
+public class Bullet extends BasicProjectile{
     protected Position position;
     protected double velocity;
     protected int damage;
@@ -35,6 +35,7 @@ public class Bullet {
         this.range=range;
         s = new Sprite(position, 10);
         s.setPath(filepath);
+        s.setSize(20);
     }
 
     public boolean move(){
@@ -43,7 +44,7 @@ public class Bullet {
         } else {
             System.out.println(position.initx + " " + range + " " + position.getX());
             if (range + position.initx < position.getX()){
-                System.out.println("delete me");
+//                System.out.println("delete me");
                 return true;
             } else {
                 position.IncreaseX(velocity);
@@ -69,5 +70,9 @@ public class Bullet {
 
     public Position getPosition(){
         return this.position;
+    }
+
+    public int getCash(){
+        return -1;
     }
 }

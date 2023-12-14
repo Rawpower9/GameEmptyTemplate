@@ -1,6 +1,7 @@
 package Entity.Plant;
 
 import Constants.Constants;
+import Entity.Bullet.BasicProjectile;
 import Entity.Bullet.Bullet;
 import Entity.Entity;
 import Simulator.Position;
@@ -29,7 +30,7 @@ public class Plant extends Entity {
         s.setPath("Images/Plants/"+t.toString().toLowerCase()+".png");
     }
 
-    public void shoot(ArrayList<Bullet> bullets){
+    public void shoot(ArrayList<BasicProjectile> bullets){
         if(coolDownTime <= 0) {
             Bullet b = new Bullet(position.getX(), position.getY(), this.damage, this.bulletSpeed, range);
             bullets.add(b);
