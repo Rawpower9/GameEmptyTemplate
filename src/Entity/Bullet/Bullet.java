@@ -42,9 +42,7 @@ public class Bullet extends BasicProjectile{
         if(range == -1) {
             position.IncreaseX(velocity);
         } else {
-            System.out.println(position.initx + " " + range + " " + position.getX());
             if (range + position.initx < position.getX()){
-//                System.out.println("delete me");
                 return true;
             } else {
                 position.IncreaseX(velocity);

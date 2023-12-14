@@ -18,7 +18,6 @@ public class Repeater extends Plant {
 
     public void shoot(ArrayList<BasicProjectile> bullets) {
         if (coolDownTime <= 0) {
-            System.out.println("Images/Bullets/" + t.toString().toLowerCase() + ".png");
             Bullet b = new Bullet(position.getX(), position.getY(), this.damage, this.bulletSpeed, Constants.PLANT.PEASHOOTER.RANGE, "Images/Bullets/" + t.toString().toLowerCase() + ".png");
             bullets.add(b);
             coolDownTime = coolDown;
